@@ -1,8 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import twitter
-import getopt, sys, os, json
+import getopt, sys, os, re
 
 """
 Cleaner file base.
