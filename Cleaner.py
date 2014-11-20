@@ -61,4 +61,4 @@ if __name__ == "__main__":
         fileIn = args[0]
         fileOut = args[1]
 
-    cleaner( fileIn, fileOut )
+    cleaner( fileIn, fileOut, logFile )
