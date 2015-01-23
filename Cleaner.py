@@ -7,37 +7,37 @@ import getopt, sys, os, re
 Cleaner file base.
 """
 
-def cleaner( fileIn, fileOut, logFile=None ):
+def cleaner( input_file, output_file, log_file=None ):
 
     # Files - Initialization
     try:
-        fileInObj = open( os.path.abspath( fileIn ), 'r' )
+        input_file_obj = open( os.path.abspath( input_file ), 'r' )
     except Exception, err:
-        msg = "[ERROR] cleaner.py: file %s cannot be open : %s\n" % ( fileIn, err )
+        msg = "[ERROR] cleaner.py: file %s cannot be open : %s\n" % ( input_file, err )
         sys.exit( msg.encode( 'UTF-8' ) )	
     try:
-        fileOutObj = open( os.path.abspath( fileOut ), 'a' )
+        output_file_obj = open( os.path.abspath( output_file ), 'a' )
     except Exception, err:
-        msg = "[ERROR] cleaner.py: file %s cannot be open : %s\n" % ( fileOut, err )
+        msg = "[ERROR] cleaner.py: file %s cannot be open : %s\n" % ( output_file, err )
         sys.exit( msg.encode( 'UTF-8' ) )
-    if logFile:
+    if log_file:
         try:
-            logFileObj = open( os.path.abspath( logFile ), 'a' )
+            log_file_obj = open( os.path.abspath( log_file ), 'a' )
         except Exception, err:
-            msg = "[ERROR] cleaner.py: file %s cannot be open : %s\n" % ( logFile, err )
+            msg = "[ERROR] cleaner.py: file %s cannot be open : %s\n" % ( log_file, err )
             sys.exit( msg.encode( 'UTF-8' ) )
     else:
-        logFileObj = sys.stdout
+        log_file_obj = sys.stdout
 
     # Cleaning
-    for line in fileInObj:
-        fileOutObj.write("line")
+    for line in input_file_obj:
+        output_file_obj.write("line")
 
 		
 if __name__ == "__main__":
 
     def usage():
-        msg = """Usage: cleaner.py [-L LOGFILE] FILEIN FILEOUT
+        msg = """Usage: cleaner.py [-L LOG_FILE] INPUT_FILE OUTPUT_FILE
                -l --log=FILE		write log and errors in a FILE """
         sys.stderr.write( msg.encode( 'UTF-8' ) )
     try:
@@ -47,10 +47,10 @@ if __name__ == "__main__":
         usage()
         sys.exit(2)
 
-    logFile = None
+    log_file = None
     for o, a in opts:
         if o in ( "-l", "--log" ):
-            logFile = a.strip()
+            log_file = a.strip()
         else:
             assert False, "unhandled option"
 
@@ -58,7 +58,7 @@ if __name__ == "__main__":
         usage()
         sys.exit(2)
     else:
-        fileIn = args[0]
-        fileOut = args[1]
+        input_file = args[0]
+        output_file = args[1]
 
-    cleaner( fileIn, fileOut, logFile )
+    cleaner( input_file, output_file, log_file )
